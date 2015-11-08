@@ -1,187 +1,195 @@
-                  <!DOCTYPE html>
-                  <html lang="en">
-                    <head>
-                      <meta charset="utf-8">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
 
-                      <title>yes fam using d3js</title>
+      <title>yes fam - d3js</title>
 
-                      <style>
-                        html,body { 
-                        padding:0; 
-                        margin:0;
-                        height:100%; 
-                        overflow: auto; 
-                        font-family: Helvetica;
-                        }
+      <style>
+      html,body { 
+        padding:0; 
+        margin:0;
+        height:100%; 
+        overflow: auto; 
+        font-family: Helvetica;
+      }
 
-                        #page {
-                            margin-left: 200px;
-                        }
-                 
-                        #header {
-                          background-color:#9DB577;
-                          color:white;
-                          text-align:left;
-                          padding:5px;
+      #page {
+        margin-left: 200px;
+      }
 
-                        }
+      #header {
+        background-color:#222;
+        color:white;
+        text-align:left;
+        padding:5px;
 
-                        #menuleftcontent{ 
-                          background-color:#96B571;
-                          color:white;
-                          clear:both;
-                          text-align:center;
-                          padding:5px;
-                        }
+      }
 
-                        #maincontent  { 
-                          background:white; 
+      #menuleftcontent{ 
+        background-color:#FFF;
+        color:white;
+        clear:both;
+        text-align:center;
+        padding:5px;
+      }
 
-                          top:0; 
-                          left:320px; 
-                          right:0; 
-                          bottom:0; 
-                          margin: 6px; 
-                          border: 1px solid #D2E6F0; 
-                          border-radius: 3px;
-                          overflow:auto;
-                        }
+      #maincontent  { 
+        background:white; 
 
-                        #clearingdiv {
-                            clear: both;
-                        }
-                       
-                        #footer {
-                          background-color:#9DB577;
-                          color:white;
-                          clear:both;
-                          text-align:center;
-                          padding:5px;
-                        }
-                      	
-                      	.node {
-                      		cursor: pointer;
-                      	}
+        top:0; 
+        left:320px; 
+        right:0; 
+        bottom:0; 
+        margin: 6px; 
+        border: 1px solid #D2E6F0; 
+        border-radius: 3px;
+        overflow:auto;
+      }
 
-                      	.node circle {
-                      	  fill: #fff;
-                      	  stroke: steelblue;
-                      	  stroke-width: 2px;
-                      	}
+      #clearingdiv {
+        clear: both;
+      }
 
-                      	.node text {
-                      	  font: 3:px sans-serif;
-                      	}
+      #footer {
+        background-color:#9DB577;
+        color:white;
+        clear:both;
+        text-align:center;
+        padding:5px;
+        font-size: 3;
+      }
 
-                      	.link {
-                      	  fill: none;
-                      	  stroke: #ccc;
-                      	  stroke-width: 1.5px;
-                      	}
-                      	
-                      </style>
+      .node {
+        cursor: pointer;
+      }
 
-                    </head>
+      .node circle {
+       fill: #fff;
+       stroke: steelblue;
+       stroke-width: 2px;
+     }
 
-                    <body>
-                  <div id="header">
-                      <font size="8"> yes family</font>
-                    <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-primary active">
-                        <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Roberta Ancestry')">Robertra Ancestry</input>
-                      </label>
-                      <label class="btn btn-primary active">
-                        <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Simpson Ancestry')">Simpson Ancestry</input>
-                      </label>
-                      <label class="btn btn-primary active">
-                        <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Utyria Ancestry')">Utyria Ancestry</input>
-                      </label>
-                      <label class="btn btn-primary active">
-                        <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Pokuaa Ancestry')">Pokuaa Ancestry</input>
-                      </label>
-                    </div>
-                  </div>
+     .node text {
+       font: 3:px sans-serif;
+     }
+
+     .link {
+       fill: none;
+       stroke: #ccc;
+       stroke-width: 1.5px;
+     }
+
+     </style>
+
+   </head>
+
+   <!-- load libraries --> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="http://d3js.org/d3.v3.min.js"></script> 
+   <!-- <script src="../d3.min.js"></script> -->
+
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
+   integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
+   crossorigin="anonymous">
+
+   <body>
 
 
-                  <div id="menuleftcontent">
-                  <font size="2">
-        		        Collapse or expand the nodes. Tip: press the name.
-                  </font>
-                  </div>
+    <div id="header">
+      <font size="8"> yes family</font>
+      Tip: Press the names to expand/collapse nodes
+    </div>  
+    
+
+    <div id="menuleftcontent">
+      <font size="2">
+      </font>
+      
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary active">
+          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Roberta Ancestry')">Robertra Ancestry</input>
+        </label>
+        <label class="btn btn-primary active">
+          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Simpson Ancestry')">Simpson Ancestry</input>
+        </label>
+        <label class="btn btn-primary active">
+          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Utyria Ancestry')">Utyria Ancestry</input>
+        </label>
+        <label class="btn btn-primary active">
+          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Pokuaa Ancestry')">Pokuaa Ancestry</input>
+        </label>
+      </div>
+    </div>
+    
+
+
+    <div id="maincontent">
+      <script>
+
+        // place json tree here
+        var treeData = [
 
 
 
-                   <div id="maincontent">
-                  <!-- load the d3.js library -->	
-                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-                  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-                  <script src="http://d3js.org/d3.v3.min.js"></script> 
-                  <!-- <script src="../d3.min.js"></script> -->
-                  	
-                  <script>
-
-			// place json tree here
-                  var treeData = [
-
-         
-
-                  ]; //END_OF_TREE
+          ]; //END_OF_TREE
 
 
-                  // ************** Generate the tree diagram	 *****************
-                  var margin = {top: 20, right: 120, bottom: 20, left: 100},
-                  	width = 2000 - margin.right - margin.left,
-                  	height = 2000 - margin.top - margin.bottom;
-                  	
-                  var i = 0, duration = 750, root;
+          // ************** Generate the tree diagram	 *****************
+          var margin = {top: 20, right: 120, bottom: 20, left: 100},
+          width = 2000 - margin.right - margin.left,
+          height = 2000 - margin.top - margin.bottom;
 
-                  var tree = d3.layout.tree().size([height, width]);
+          var i = 0, duration = 750, root;
 
-                  var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
+          var tree = d3.layout.tree().size([height, width]);
 
-                  var svg = d3.select("#maincontent").append("svg")
-                  	.attr("width", width + margin.right + margin.left)
-                  	.attr("height", height + margin.top + margin.bottom).append("g")
-                  	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
 
-                  root = treeData[0];
-                  root.x0 = height / 2;
-                  root.y0 = 0;
+          var svg = d3.select("#maincontent").append("svg")
+          .attr("width", width + margin.right + margin.left)
+          .attr("height", height + margin.top + margin.bottom).append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        function expandNode(d) {
-        	var c = root.children;
-        	
-        	for (i = 0; i < c.length; i++) { 
-        		var name = c[i].name;
-        		if(name==d){
-        		    expand(c[i]); 
-        		}
-        	}
-        	  update(root);
+          root = treeData[0];
+          root.x0 = height / 2;
+          root.y0 = 0;
+
+          function expandNode(d) {
+            var c = root.children;
+
+            for (i = 0; i < c.length; i++) { 
+              var name = c[i].name;
+              if(name==d){
+                expand(c[i]); 
+              }
+            }
+            update(root);
           }
 
-        function expand(d) {
+          function expand(d) {
             if (d.children) {
               d_children = d._children;
               d_children.forEach(collapse);
               d._children = null;
             }
+          }a
+
+          function collapseNode(d) {
+            var c = root.children;
+
+            for (i = 0; i < c.length; i++) { 
+              var name = c[i].name;
+              if(name==d){
+                collapse(c[i]); 
+              }
+            }
+            update(root);
           }
 
-        function collapseNode(d) {
-        	var c = root.children;
-        	
-        	for (i = 0; i < c.length; i++) { 
-        		var name = c[i].name;
-        		if(name==d){
-        		    collapse(c[i]); 
-        		}
-        	}
-        	  update(root);
-          }
-
-        function collapse(d) {
+          function collapse(d) {
             if (d.children) {
               d._children = d.children;
               d._children.forEach(collapse);
@@ -191,177 +199,168 @@
 
         //  root.children.forEach(collapse);
 
-                    
-                  update(root);
+
+        update(root);
 
 
-                  d3.select(self.frameElement).style("height", "500px");
+        d3.select(self.frameElement).style("height", "500px");
 
-                  function update(source) {
+        function update(source) {
 
-                    // Compute the new tree layout.
-                    var nodes = tree.nodes(root).reverse(),
-                  	  links = tree.links(nodes);
+            // Compute the new tree layout.
+            var nodes = tree.nodes(root).reverse(),
+            links = tree.links(nodes);
 
-                    // Normalize for fixed-depth.
-                    nodes.forEach(function(d) { d.y = d.depth * 180; });
-
-
-                    // Update the nodes…
-                    var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
-
-                    // Enter any new nodes at the parent's previous position.
-                    var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) { 
-                  	return "translate(" + source.y0 + "," + source.x0 + ")"; }).on("click", click);
-
-                    nodeEnter.append("circle")
-                  	  .attr("r", 1e-6)
-                  	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-                    nodeEnter.append("text")
-                  	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
-                  	  .attr("dy", ".35em")
-                  	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-                  	  .text(function(d) { return d.name; })
-                  	  .style("fill-opacity", 1e-6);
-
-                    // Transition nodes to their new position.
-                    var nodeUpdate = node.transition()
-                  	  .duration(duration)
-                  	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
-
-                    nodeUpdate.select("circle")
-                  	  .attr("r", 5)
-                  	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-                    nodeUpdate.select("text")
-                  	  .style("fill-opacity", 1);
-
-                    // Transition exiting nodes to the parent's new position.
-                    var nodeExit = node.exit().transition()
-                  	  .duration(duration)
-                  	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-                  	  .remove();
-
-                    nodeExit.select("circle")
-                  	  .attr("r", 1e-6);
-
-                    nodeExit.select("text")
-                  	  .style("fill-opacity", 1e-6);
-
-                    // Update the links…
-                    var link = svg.selectAll("path.link")
-                  	  .data(links, function(d) { return d.target.id; });
-
-                    // Enter any new links at the parent's previous position.
-                    link.enter().insert("path", "g")
-                  	  .attr("class", "link")
-                  	  .attr("d", function(d) {
-                  		var o = {x: source.x0, y: source.y0};
-                  		return diagonal({source: o, target: o});
-                  	  });
-
-                    // Transition links to their new position.
-                    link.transition()
-                  	  .duration(duration)
-                  	  .attr("d", diagonal);
-
-                    // Transition exiting nodes to the parent's new position.
-                    link.exit().transition()
-                  	  .duration(duration)
-                  	  .attr("d", function(d) {
-                  		var o = {x: source.x, y: source.y};
-                  		return diagonal({source: o, target: o});
-                  	  }).remove();
-
-                    // Stash the old positions for transition.
-                    nodes.forEach(function(d) {
-                  	d.x0 = d.x;
-                  	d.y0 = d.y;
-                    });
-                  }
-
-                  // Toggle children on click.
-                    function click(d) {
-                    if (d.children) {
-                    	d._children = d.children;
-                    	d.children = null;
-                    } else {
-                    	d.children = d._children;
-                    	d._children = null;
-                    }
-                    update(d);
-                  }
-
-                  </script>
-                  	
+            // Normalize for fixed-depth.
+            nodes.forEach(function(d) { d.y = d.depth * 180; });
 
 
+            // Update the nodes…
+            var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+            // Enter any new nodes at the parent's previous position.
+            var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) { 
+             return "translate(" + source.y0 + "," + source.x0 + ")"; }).on("click", click);
+
+            nodeEnter.append("circle")
+            .attr("r", 1e-6)
+            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+            nodeEnter.append("text")
+            .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+            .attr("dy", ".35em")
+            .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+            .text(function(d) { return d.name; })
+            .style("fill-opacity", 1e-6);
+
+            // Transition nodes to their new position.
+            var nodeUpdate = node.transition()
+            .duration(duration)
+            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+            nodeUpdate.select("circle")
+            .attr("r", 5)
+            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+            nodeUpdate.select("text")
+            .style("fill-opacity", 1);
+
+            // Transition exiting nodes to the parent's new position.
+            var nodeExit = node.exit().transition()
+            .duration(duration)
+            .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+            .remove();
+
+            nodeExit.select("circle")
+            .attr("r", 1e-6);
+
+            nodeExit.select("text")
+            .style("fill-opacity", 1e-6);
+
+            // Update the links…
+            var link = svg.selectAll("path.link")
+            .data(links, function(d) { return d.target.id; });
+
+            // Enter any new links at the parent's previous position.
+            link.enter().insert("path", "g")
+            .attr("class", "link")
+            .attr("d", function(d) {
+              var o = {x: source.x0, y: source.y0};
+              return diagonal({source: o, target: o});
+            });
+
+            // Transition links to their new position.
+            link.transition()
+            .duration(duration)
+            .attr("d", diagonal);
+
+            // Transition exiting nodes to the parent's new position.
+            link.exit().transition()
+            .duration(duration)
+            .attr("d", function(d) {
+              var o = {x: source.x, y: source.y};
+              return diagonal({source: o, target: o});
+            }).remove();
+
+            // Stash the old positions for transition.
+            nodes.forEach(function(d) {
+             d.x0 = d.x;
+             d.y0 = d.y;
+           });
+          }
+
+          // Toggle children on click.
+          function click(d) {
+            if (d.children) {
+            	d._children = d.children;
+            	d.children = null;
+            } else {
+            	d.children = d._children;
+            	d._children = null;
+            }
+            update(d);
+          }
+
+          </script>
+        </div>
 
 
 
-                  <br/>
-                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Underlying data source
-                          </a>
-                        </h4>
-                      </div>
-                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            This tree is constructed from data entered from this
-                            <a href="https://docs.google.com/spreadsheets/d/1k9API/edit?usp=sharing" target='_blank'>Google Sheet</a>
-                            <br/>
-                            It's a work in progress so nobody has been left off deliberately. In fact, more then likely it's a programming error. 
-                            If you can help me expand it get in contact - doesn't matter about the direction and who.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                <div id="footer">
-                <font size="1">
-
-                  <br/>
-
-        	 <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>
-                    Pedigree Tree</a>
-                  
-                  <br/>
-                  <a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
-                    How do I show marriages in a d3.js based 'family-tree'</a>
-                  
-                  <br/>
 
 
-                  <a href="http://d3js.org/" target='_blank'>
-                    http://d3js.org/</a>
-                  
-                  <br/>
+        
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Underlying data source
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                This tree is ultimately constructed from data entered in a spreadsheet having several mandatory columns:
+                <ol>
+                  <li>ID - must be unique</li>
+                  <li>Mother ID - references another row who is the mother</li>
+                  <li>Father ID - references another row who is the father</li>
+                  <li>First Name</li>
+                  <li>Middle Name</li>
+                  <li>Family Name</li>
+                  <li>Other columns are gravey, they provide additional person information</li>
+                </ol>  
+                <br/>
+                It's a work in progress so nobody has been deliberately left out. 
+                If you can help expand or fix any inaccuracies get in touch - doesn't matter about the direction or who you want to add.
 
-                  <a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
-                    How do you create a family tree in d3.js? </a>
-                  
-                  <br/>
 
-                  <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
-                    D3.js Tips and Tricks: Tree diagrams in d3.js</a>
-                  
-                  <br/>
-                  
-                  <a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
-                    http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
-                  
-                  <br/>
 
-                	<a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
-            		    http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
-                  <br/>
-                    <font/>
-                <div/>
+        <br/><br/>
+          <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
 
-                    </body>
+          
+          <a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
+            How do I show marriages in a d3.js based 'family-tree'</a>
+            |
+            <a href="http://d3js.org/" target='_blank'>http://d3js.org/</a>
+            |
+            <a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
+              How do you create a family tree in d3.js? </a>
+            |
+              <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
+                D3.js Tips and Tricks: Tree diagrams in d3.js</a>
+              |
+
+                <a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
+                  http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
+               |
+                  <a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
+                    http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
+                    <div/>
+              </div>
+            </div>
+          </div>
+        </div>
+                  </body>
                   </html>
