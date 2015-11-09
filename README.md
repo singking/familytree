@@ -36,6 +36,11 @@ https://github.com/Lucas-C/genealogic-d3
 https://github.com/mbostock/d3/wiki/Tree-Layout
 
 #my notes
+
+jQuery Autocomplete Widget
+http://api.jqueryui.com/autocomplete/
+
+
 <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
 
 
