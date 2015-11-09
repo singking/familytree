@@ -369,16 +369,19 @@
             update(d);
           }
 
-          function nameAllNodes(d) {
+          function extractNodeNames(d) {
 
+              
+              var name = d.name;
+              availableTags.push(name);
 
-            for (i = 0; i < d.length; i++) {
-              var node = d[i];
+            for (i = 0; i < d.children.length; i++) {
+              var node = d.children[i];
               var name = node.name;
               availableTags.push(name);
 
               if (node.children) {
-                node.children.forEach(nameAllNodes(availableTags));
+                node.children.forEach(extractNodeNames);
               }
             }
             
@@ -396,7 +399,7 @@
 
           $(function() {
 
-            //root.children.foreach (nameAllNodes);
+            root.children.forEach (extractNodeNames);
 
             $( "#searchtext" ).autocomplete({source: availableTags});
           });
