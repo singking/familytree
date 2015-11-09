@@ -26,7 +26,14 @@ http://bl.ocks.org/d3noob/8375092
 It's a bit crude now cause the JSON is just dropped into the html file yesfamily.html.
 
 
-See also https://github.com/mbostock/d3/wiki/Tree-Layout
+See also 
+
+d3 2-way tree http://bl.ocks.org/kanesee/5d6c48bffd4ea31201fb
+
+https://chezsoi.org/lucas/genealogic-d3/skywalker.html
+https://github.com/Lucas-C/genealogic-d3
+
+https://github.com/mbostock/d3/wiki/Tree-Layout
 
 #my notes
 <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
