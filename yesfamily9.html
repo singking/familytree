@@ -89,93 +89,93 @@
   </head>
 
   <!-- load libraries --> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script> 
-    <!-- <script src="../d3.min.js"></script> -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js"></script> 
+  <!-- <script src="../d3.min.js"></script> -->
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
-    integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
-    crossorigin="anonymous">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
+  integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
+  crossorigin="anonymous">
 
-    <body>
+  <body>
 
-      <font size="6"> yes family</font>
-
-
-      Tip: Press the names to expand/collapse nodes
-      <div id="header">
+    <font size="6"> yes family</font>
 
 
-        <div id="menuleftcontent">
-          <font size="2">
-          </font>
+    Tip: Press the names to expand/collapse nodes
+    <div id="header">
+
+
+      <div id="menuleftcontent">
+        <font size="2">
+        </font>
 
 
 
 
-          <div class="btn-group" data-toggle="buttons">
+        <div class="btn-group" data-toggle="buttons">
 
-            <label class="btn-lg btn-primary active">
-              <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Roberta Ancestry')">Robertra</input>
-            </label>
-            <label class="btn-lg btn-primary active">
-              <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'Simpson Ancestry')">Simpson</input>
-            </label>
-            <label class="btn-lg btn-primary active">
-              <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')">Utyria</input>
-            </label>
-            <label class="btn-lg btn-primary active">
-              <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Pokuaa Ancestry')">Pokuaa</input>
-            </label>
-            <div class="form-group">
-              <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()">
-            </div>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Roberta Ancestry')">Roberta</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'Simpson Ancestry')">Simpson</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')">Utyria</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Pokuaa Ancestry')">Pokuaa</input>
+          </label>
+          <div class="form-group">
+            <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()">
           </div>
         </div>
-      </div>  
+      </div>
+    </div>  
 
 
-      <div id="maincontent">
-        <script>
+    <div id="maincontent">
+      <script>
 
         // place json tree here
         var treeData = [
-{
-  "id" : "0",
-  "name" : "root",
-  "motherId" : "",
-  "fatherId" : "",
-  "children" : [ {
-    "id" : "2",
-    "name" : "dad smith",
-    "motherId" : "0",
-    "fatherId" : "",
-    "children" : [ {
-      "id" : "3",
-      "name" : "son smith",
-      "motherId" : "1",
-      "fatherId" : "2",
-      "children" : [ ]
-    } ]
-  }, {
-    "id" : "1",
-    "name" : "mum smith",
-    "motherId" : "0",
-    "fatherId" : "",
-    "children" : [ {
-      "id" : "3",
-      "name" : "son smith",
-      "motherId" : "1",
-      "fatherId" : "2",
-      "children" : [ ]
-    } ]
-  } ]
-} 
+        {
+          "id" : "0",
+          "name" : "root",
+          "motherId" : "",
+          "fatherId" : "",
+          "children" : [ {
+            "id" : "2",
+            "name" : "dad smith",
+            "motherId" : "0",
+            "fatherId" : "",
+            "children" : [ {
+              "id" : "3",
+              "name" : "son smith",
+              "motherId" : "1",
+              "fatherId" : "2",
+              "children" : [ ]
+            } ]
+          }, {
+            "id" : "1",
+            "name" : "mum smith",
+            "motherId" : "0",
+            "fatherId" : "",
+            "children" : [ {
+              "id" : "3",
+              "name" : "son smith",
+              "motherId" : "1",
+              "fatherId" : "2",
+              "children" : [ ]
+            } ]
+          } ]
+        } 
 
 
 
@@ -235,6 +235,8 @@
           function colourNode(c, s) {
 
 
+            return;
+
             for (i = 0; i < c.length; i++) {
               var node = c[i];
               var name = node.name;
@@ -290,7 +292,7 @@
 
             // Enter any new nodes at the parent's previous position.
             var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) { 
-             return "translate(" + source.y0 + "," + source.x0 + ")"; }).on("click", click);
+             return "translate(" + source.y0 + "," + source.x0 + ")"; }).on("click", expandCollapseNodesOnClick);
 
             nodeEnter.append("circle")
             .attr("r", 1e-6)
@@ -321,11 +323,9 @@
             .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
             .remove();
 
-            nodeExit.select("circle")
-            .attr("r", 1e-6);
+            nodeExit.select("circle").attr("r", 1e-6);
 
-            nodeExit.select("text")
-            .style("fill-opacity", 1e-6);
+            nodeExit.select("text").style("fill-opacity", 1e-6);
 
             // Update the links…
             var link = svg.selectAll("path.link")
@@ -340,9 +340,7 @@
             });
 
             // Transition links to their new position.
-            link.transition()
-            .duration(duration)
-            .attr("d", diagonal);
+            link.transition().duration(duration).attr("d", diagonal);
 
             // Transition exiting nodes to the parent's new position.
             link.exit().transition()
@@ -359,8 +357,8 @@
            });
           }
 
-          // Toggle children on click.
-          function click(d) {
+          // Toggle children expand on click.
+          function expandCollapseNodesOnClick(d) {
             if (d.children) {
             	d._children = d.children;
             	d.children = null;
@@ -371,11 +369,11 @@
             update(d);
           }
 
-          function nameAllNodes(c) {
+          function nameAllNodes(d) {
 
 
-            for (i = 0; i < c.length; i++) {
-              var node = c[i];
+            for (i = 0; i < d.length; i++) {
+              var node = d[i];
               var name = node.name;
               availableTags.push(name);
 
@@ -386,23 +384,19 @@
             
           }
           
-      var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "Ruby",
-            "Scala",
-            "Scheme"
-            ];
+          var availableTags = [
+          "ActionScript",
+          "AppleScript",
+          "Asp",
+          "Ruby",
+          "Scala",
+          "Scheme"
+          ];
 
 
           $(function() {
 
-            
-
-      
-
-            root.children.foreach (nameAllNodes);
+            //root.children.foreach (nameAllNodes);
 
             $( "#searchtext" ).autocomplete({source: availableTags});
           });
