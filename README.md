@@ -29,23 +29,23 @@ It's a bit crude now cause the JSON is just dropped into the html file yesfamily
 See also https://github.com/mbostock/d3/wiki/Tree-Layout
 
 #my notes
-                <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
+<a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
 
 
-                <a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
-                  How do I show marriages in a d3.js based 'family-tree'</a>
-                  |
-                  <a href="http://d3js.org/" target='_blank'>http://d3js.org/</a>
-                  |
-                  <a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
-                    How do you create a family tree in d3.js? </a>
-                    |
-                    <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
-                      D3.js Tips and Tricks: Tree diagrams in d3.js</a>
-                      |
+<a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
+How do I show marriages in a d3.js based 'family-tree'</a>
 
-                      <a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
-                        http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
-                        |
-                        <a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
-                          http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
+<a href="http://d3js.org/" target='_blank'>http://d3js.org/</a>
+
+<a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
+How do you create a family tree in d3.js? </a>
+
+<a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
+D3.js Tips and Tricks: Tree diagrams in d3.js</a>
+
+
+<a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
+http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
+
+<a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
+http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
