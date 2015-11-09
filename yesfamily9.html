@@ -6,84 +6,93 @@
       <title>yes fam - d3js</title>
 
       <style>
-        html,body { 
-          padding:0; 
-          margin:0;
-          height:100%; 
-          overflow: auto; 
-          font-family: Helvetica;
-        }
-
-        #page {
-          margin-left: 200px;
-        }
-
-        #header {
-          background-color:#222;
-          color:white;
-          text-align:left;
-          padding:5px;
-        }
-
-        #menuleftcontent{ 
-          background-color:#222;
-          color:white;
-          clear:both;
-          text-align:left;
-          padding:5px;
-        }
-
-        #maincontent  { 
-          background:white; 
-
-          top:0; 
-          left:320px; 
-          right:0; 
-          bottom:0; 
-          margin: 6px; 
-          border: 1px solid #D2E6F0; 
-          border-radius: 3px;
-          overflow:auto;
-        }
-
-        #clearingdiv {
-          clear: both;
-        }
-
-        #footer {
-          background-color:#9DB577;
-          color:white;
-          clear:both;
-          text-align:center;
-          padding:5px;
-          font-size: 3;
-        }
-
-        .node {
-          cursor: pointer;
-        }
-
-        .node circle {
-         fill: #fff;
-         stroke: steelblue;
-         stroke-width: 2px;
-       }
-
-       .node text {
-         font: 3:px sans-serif;
-       }
-
-       .link {
-         fill: none;
-         stroke: #ccc;
-         stroke-width: 1.5px;
-       }
-
-       .ui-widget-content .ui-state-focus
-       {
-        background: yellow;
-        border: 1px solid green;
+      html,body { 
+        padding:0; 
+        margin:0;
+        height:100%; 
+        overflow: auto; 
+        font-family: Helvetica;
       }
+
+      #page {
+        margin-left: 200px;
+      }
+
+      #header {
+        background-color:#222;
+        color:white;
+        text-align:left;
+        padding:5px;
+      }
+
+      #menuleftcontent{ 
+        background-color:#222;
+        color:white;
+        clear:both;
+        text-align:left;
+        padding:5px;
+      }
+
+      .form-group  {
+        float: right;
+        right: 0px;
+        width: 200px;
+
+      }
+
+      #maincontent  { 
+        background:white; 
+
+        top:0; 
+        left:320px; 
+        right:0; 
+        bottom:0; 
+        margin: 6px; 
+        border: 1px solid #D2E6F0; 
+        border-radius: 3px;
+        overflow:auto;
+      }
+
+
+      #clearingdiv {
+        clear: both;
+      }
+
+      #footer {
+        background-color:#9DB577;
+        color:white;
+        clear:both;
+        text-align:center;
+        padding:5px;
+        font-size: 3;
+      }
+
+      .node {
+        cursor: pointer;
+      }
+
+      .node circle {
+       fill: #fff;
+       stroke: steelblue;
+       stroke-width: 2px;
+     }
+
+     .node text {
+       font: 3:px sans-serif;
+     }
+
+
+     .link {
+       fill: none;
+       stroke: #ccc;
+       stroke-width: 1.5px;
+     }
+
+     .ui-widget-content .ui-state-focus
+     {
+      background: yellow;
+      border: 1px solid green;
+    }
     </style>
 
   </head>
@@ -107,7 +116,7 @@
     <font size="6"> yes family</font>
 
 
-    Tip: Press the names to expand/collapse nodes
+    (Press the names to expand/collapse nodes)
     <div id="header">
 
 
@@ -118,25 +127,25 @@
 
 
 
-        <div class="btn-group" data-toggle="buttons">
-
-          <label class="btn-lg btn-primary active">
-            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Roberta Ancestry')">Roberta</input>
+        <div id="myButtons" class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'dad smith')" id="dad smith">Roberta</input>
           </label>
-          <label class="btn-lg btn-primary active">
-            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'Simpson Ancestry')">Simpson</input>
+          <label class="btn btn-primary active">
+            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'mum smith')" id="mum smith">Simpson</input>
           </label>
-          <label class="btn-lg btn-primary active">
-            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')">Utyria</input>
+          <label class="btn btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')" id="Utyria Ancestry">Utyria</input>
           </label>
-          <label class="btn-lg btn-primary active">
-            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Pokuaa Ancestry')">Pokuaa</input>
+          <label class="btn btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Pokuaa Ancestry')" id="Pokuaa Ancestry">Pokuaa</input>
           </label>
-          <div class="form-group">
-            <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()">
-          </div>
+        </div>
+        <div class="form-group">
+          <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()">
         </div>
       </div>
+
     </div>  
 
 
@@ -250,8 +259,6 @@
             }
             
           }
-          
-          
 
           function collapse(d) {
             if (d.children) {
@@ -371,9 +378,9 @@
 
           function extractNodeNames(d) {
 
-              
-              var name = d.name;
-              availableTags.push(name);
+
+            var name = d.name;
+            availableTags.push(name);
 
             for (i = 0; i < d.children.length; i++) {
               var node = d.children[i];
@@ -405,39 +412,30 @@
           });
 
 
+          $("#myButtons :input").change(function() {
+              console.log(this); // points to the clicked input button
 
-        </script>
-      </div>
-      
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Underlying data source
-              </a>
-            </h4>
-          </div>
-          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              This tree is ultimately constructed from data entered in a spreadsheet having several mandatory columns:
-              <ol>
-                <li>ID - must be unique</li>
-                <li>Mother ID - references another row who is the mother</li>
-                <li>Father ID - references another row who is the father</li>
-                <li>First Name</li>
-                <li>Middle Name</li>
-                <li>Family Name</li>
-                <li>Other columns are gravey, they provide additional person information</li>
-              </ol>  
-              <br/>
-              It's a work in progress so nobody has been deliberately left out. 
-              If you can help expand or fix any inaccuracies get in touch - doesn't matter about the direction or who you want to add.
+              collapseNode(this, $(this).find('input').attr('id'))
 
-              <div/>
+            });
+          </script>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Underlying data source
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                This tree is derived from data entered in a family spreadsheet. It's a work in progress, if you can help expand it get in touch - doesn't matter about the direction or who you want to add.
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </body>
-    </html>
+      </body>
+      </html>
