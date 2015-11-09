@@ -23,14 +23,13 @@
         color:white;
         text-align:left;
         padding:5px;
-
       }
 
       #menuleftcontent{ 
-        background-color:#FFF;
+        background-color:#222;
         color:white;
         clear:both;
-        text-align:center;
+        text-align:left;
         padding:5px;
       }
 
@@ -97,32 +96,47 @@
 
    <body>
 
+    <font size="6"> yes family</font>
 
+
+    Tip: Press the names to expand/collapse nodes
     <div id="header">
-      <font size="8"> yes family</font>
-      Tip: Press the names to expand/collapse nodes
+
+
+      <div id="menuleftcontent">
+        <font size="2">
+        </font>
+
+
+
+
+        <div class="btn-group" data-toggle="buttons">
+
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Roberta Ancestry')">Robertra</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'Simpson Ancestry')">Simpson</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')">Utyria</input>
+          </label>
+          <label class="btn-lg btn-primary active">
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Pokuaa Ancestry')">Pokuaa</input>
+          </label>
+
+
+            <div class="form-group">
+              <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()">
+            </div>
+        </div>
+      </div>
     </div>  
+
+
     
 
-    <div id="menuleftcontent">
-      <font size="2">
-      </font>
-      
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-primary active">
-          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Roberta Ancestry')">Robertra Ancestry</input>
-        </label>
-        <label class="btn btn-primary active">
-          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Simpson Ancestry')">Simpson Ancestry</input>
-        </label>
-        <label class="btn btn-primary active">
-          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Utyria Ancestry')">Utyria Ancestry</input>
-        </label>
-        <label class="btn btn-primary active">
-          <input type="checkbox" autocomplete="off" checked onclick="collapseNode('Pokuaa Ancestry')">Pokuaa Ancestry</input>
-        </label>
-      </div>
-    </div>
+    
     
 
 
@@ -131,7 +145,6 @@
 
         // place json tree here
         var treeData = [
-
 
 
           ]; //END_OF_TREE
@@ -157,43 +170,68 @@
           root.x0 = height / 2;
           root.y0 = 0;
 
-          function expandNode(d) {
+
+          function collapseNode(cb, d) {
             var c = root.children;
 
+            
             for (i = 0; i < c.length; i++) { 
               var name = c[i].name;
               if(name==d){
-                expand(c[i]); 
+                if (cb.checked){
+                  expand(c[i]);
+                }else{
+                  collapse(c[i]); 
+                }
               }
             }
             update(root);
           }
 
-          function expand(d) {
-            if (d.children) {
-              d_children = d._children;
-              d_children.forEach(collapse);
-              d._children = null;
-            }
-          }a
 
-          function collapseNode(d) {
+        function myFunction(d) {
             var c = root.children;
+            var s = document.getElementById("searchtext").value
 
+  
             for (i = 0; i < c.length; i++) { 
-              var name = c[i].name;
-              if(name==d){
-                collapse(c[i]); 
-              }
+              colourNode(c[i]);
             }
             update(root);
           }
+
+          function colourNode(c, s) {
+
+              
+            for (i = 0; i < c.children.length; i++) {
+              var node = c.children[i];
+              var name = node.name;
+              if(name.indexOf(s)>-1){
+                node.style("fill", '#888')
+              }
+
+              if (node.children) {
+                node.children.forEach(colourNode(node.children, s));
+              }
+            }
+            
+          }
+          
+          
 
           function collapse(d) {
             if (d.children) {
               d._children = d.children;
               d._children.forEach(collapse);
               d.children = null;
+            }
+          }
+
+          function expand(d) {
+            if (d._children) {
+              d.children = d._children;
+              d.children.forEach(expand);
+              d._children = null;
             }
           }
 
@@ -303,11 +341,6 @@
 
           </script>
         </div>
-
-
-
-
-
         
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-default">
@@ -336,31 +369,31 @@
 
 
 
-        <br/><br/>
-          <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
+                <br/><br/>
+                <a href="http://bl.ocks.org/mbostock/2966094" target='_blank'>Pedigree Tree</a>
 
-          
-          <a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
-            How do I show marriages in a d3.js based 'family-tree'</a>
-            |
-            <a href="http://d3js.org/" target='_blank'>http://d3js.org/</a>
-            |
-            <a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
-              How do you create a family tree in d3.js? </a>
-            |
-              <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
-                D3.js Tips and Tricks: Tree diagrams in d3.js</a>
-              |
 
-                <a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
-                  http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
-               |
-                  <a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
-                    http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
-                    <div/>
-              </div>
-            </div>
-          </div>
-        </div>
-                  </body>
-                  </html>
+                <a href="http://stackoverflow.com/questions/13763352/how-do-i-show-marriages-in-a-d3-js-based-family-tree" target='_blank'>
+                  How do I show marriages in a d3.js based 'family-tree'</a>
+                  |
+                  <a href="http://d3js.org/" target='_blank'>http://d3js.org/</a>
+                  |
+                  <a href="http://stackoverflow.com/questions/31245751/how-do-you-create-a-family-tree-in-d3-js" target='_blank'>
+                    How do you create a family tree in d3.js? </a>
+                    |
+                    <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html" target='_blank'>
+                      D3.js Tips and Tricks: Tree diagrams in d3.js</a>
+                      |
+
+                      <a href="http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel" target='_blank'>
+                        http://stackoverflow.com/questions/23468831/set-up-a-html-page-with-left-and-right-panel </a>
+                        |
+                        <a href="http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer" target='_blank'>
+                          http://stackoverflow.com/questions/24606854/want-inner-div-to-scroll-in-left-panel-with-100-height-and-footer</a>    
+                          <div/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </body>
+                </html>
