@@ -29,44 +29,54 @@ public class CsvToJson {
 				// ignore header
 				continue;
 			}
-			Person person = people.get(columns.get(0));
-			if (person == null) {
-				String firstname = columns.get(3);
-				String middlename = columns.get(4);
-				String secondname = columns.get(5);
 
-				if ((firstname == null || firstname.equals(""))
-						&& (secondname == null || secondname.equals(""))) {
-					continue;
-				}
+			String motherId = columns.get(1);
+			String fatherId = columns.get(2);
+			String firstname = columns.get(3);
+			String middlename = columns.get(4);
+			String secondname = columns.get(5);
 
-				person = new Person(id, firstname + " " + middlename + " "
-						+ secondname);
-				people.put(id, person);
-
-				String motherId = columns.get(1);
-				String fatherId = columns.get(2);
-
-				Person mother = people.get(motherId);
-				Person father = people.get(fatherId);
-
-				if (mother != null) {
-					mother.getChildren().add(person);
-				}
-				if (father != null) {
-					father.getChildren().add(person);
-				}
-				if (father == null && mother == null) {
-					roots.add(person);
+			if ((firstname == null || firstname.equals(""))
+					&& (secondname == null || secondname.equals(""))) {
+				continue;
+			}
+			String name = firstname;
+			if (middlename != null) {
+				middlename = middlename.trim();
+				if (!middlename.equals("")) {
+					name = name + " " + middlename;
 				}
 			}
-		}
+			if (secondname != null) {
+				secondname = secondname.trim();
+				if (!secondname.equals("")) {
+					name = name + " " + secondname;
+				}
+			}
+			Person person = new Person(id, name, motherId, fatherId);
+			people.put(id, person);
 
+		}
+		for (Person p : people.values()) {
+			Person mother = people.get(p.getMotherId());
+			Person father = people.get(p.getFatherId());
+
+			if (mother != null) {
+				mother.getChildren().add(p);
+			}
+			if (father != null) {
+				father.getChildren().add(p);
+			}
+			if (father == null && mother == null) {
+				roots.add(p);
+			}
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		// mapper.enable(SerializationConfig.INDENT_OUTPUT);
 
 		// Object to JSON in file
-		mapper.writeValue(new File("family.json"), people);
+		// mapper.writeValue(new File("family.json"), people);
+		mapper.writeValue(new File("family.json"), roots);
 
 		// Object to JSON in String
 		String jsonInString = mapper.defaultPrettyPrintingWriter()
