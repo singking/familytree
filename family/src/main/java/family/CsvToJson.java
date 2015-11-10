@@ -71,6 +71,16 @@ public class CsvToJson {
 				roots.add(p);
 			}
 		}
+
+		if (roots.size() != 1) {
+
+			String rootString = "";
+			for (Person p : roots) {
+				rootString += p.getName() + " ";
+			}
+
+			throw new RuntimeException("expecting one root=>" + rootString);
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		// mapper.enable(SerializationConfig.INDENT_OUTPUT);
 
