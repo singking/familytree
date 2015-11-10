@@ -103,6 +103,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
   <script src="http://d3js.org/d3.v3.min.js"></script> 
   <!-- <script src="../d3.min.js"></script> -->
 
@@ -129,10 +131,10 @@
 
         <div id="myButtons" class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'dad smith')" id="dad smith">Roberta</input>
+            <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'dad smith')" id="Roberta Ancestry">Roberta</input>
           </label>
           <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'mum smith')" id="mum smith">Simpson</input>
+            <input type="checkbox" autocomplete="on" checked onclick="collapseNode(this, 'mum smith')" id="Simpson Ancestry">Simpson</input>
           </label>
           <label class="btn btn-primary active">
             <input type="checkbox" autocomplete="off" checked onclick="collapseNode(this, 'Utyria Ancestry')" id="Utyria Ancestry">Utyria</input>
@@ -154,7 +156,8 @@
 
         // place json tree here
         var treeData = [
-        {
+
+ {
           "id" : "0",
           "name" : "root",
           "motherId" : "",
@@ -187,7 +190,6 @@
         } 
 
 
-
           ]; //END_OF_TREE
 
 
@@ -212,13 +214,13 @@
           root.y0 = 0;
 
 
-          function collapseNode(cb, d) {
+          function collapseNode(cb) {
             var c = root.children;
 
             
             for (i = 0; i < c.length; i++) { 
               var name = c[i].name;
-              if(name==d){
+              if(name==cb.id){
                 if (cb.checked){
                   expand(c[i]);
                 }else{
@@ -377,30 +379,37 @@
           }
 
           function extractNodeNames(d) {
+            var nodename = d.name;
+
+            if(_.contains(availableTags, nodename)){
+                  //already seen
+                  return;
+                }else{
+                  availableTags.push(nodename);
+                }
 
 
-            var name = d.name;
-            availableTags.push(name);
+                if (d.children){
+                  for (i = 0; i < d.children.length; i++) {
+                    var node = d.children[i];
+                    var name = node.name;
 
-            for (i = 0; i < d.children.length; i++) {
-              var node = d.children[i];
-              var name = node.name;
-              availableTags.push(name);
+                    if(_.contains(availableTags, name)){
+                  // branch already seen
+                  return;
+                }else{
+                  availableTags.push(name);
+                }
 
-              if (node.children) {
-                node.children.forEach(extractNodeNames);
+                if (node.children) {
+                  node.children.forEach(extractNodeNames);
+                }
               }
             }
-            
           }
-          
+
           var availableTags = [
-          "ActionScript",
-          "AppleScript",
-          "Asp",
-          "Ruby",
-          "Scala",
-          "Scheme"
+
           ];
 
 
@@ -415,7 +424,7 @@
           $("#myButtons :input").change(function() {
               console.log(this); // points to the clicked input button
 
-              collapseNode(this, $(this).find('input').attr('id'))
+              collapseNode(this)
 
             });
           </script>
