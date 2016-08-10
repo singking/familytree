@@ -13,7 +13,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.google.common.base.Splitter;
 import com.google.common.io.Files;
 
-public class CsvToJson {
+public class CsvToDirectNestedJson {
 
 	public static void main(String[] args) throws IOException {
 		Map<String, Person> people = new HashMap<>();

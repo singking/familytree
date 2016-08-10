@@ -8,6 +8,7 @@ public class Person {
 	String name;
 	String motherId;
 	String fatherId;
+	
 	List<Person> children = new ArrayList<>();
 
 	public Person(String id, String name) {
