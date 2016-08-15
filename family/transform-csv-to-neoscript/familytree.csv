@@ -1,0 +1,5 @@
+ID,Mother ID,Father ID,First Name,Middle Name,Last Name,Gender,Place of Birth,Generation??
+0,,,root,,,female,JA,
+1,0,,mum,,smith,female,JA,
+2,0,,dad,,smith,male,JA,
+3,1,2,son,,smith,male,JA,
