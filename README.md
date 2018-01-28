@@ -2,7 +2,7 @@
 
 Here's my attempt to use d4js to represent my family tree.
 
-A spreadsheet exists that hopefully everyone can understand. Here's and example:
+A spreadsheet exists that hopefully everyone can understand. Here's an example:
 
 ID,Mother ID,Father ID,First Name,Middle Name,Last Name,Gender,Place of Birth,Generation??
 1,,,mum,,smith,female,JA,
