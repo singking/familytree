@@ -35,14 +35,31 @@
 
 
 
-<script>
+<script type="text/javascript">
+var baseAddress = "http://localhost:8080";
+
     $(document).ready(function() {
         $("#icon").click(function() {
             $("#panel").slideToggle("slow");
         });
     });
 
-
+    function doGetPersonsAsJson() {
+        $.ajax({
+            type: "GET",
+            url : baseAddress + "/persons",
+            headers: { "Accept": "application/json" },
+            success: function (dataXmlDom) {
+                
+            }
+            
+            error: function (xhr, message, errorThrown) {
+                alert("Ajax error occurred: " + message);
+            }
+        });
+        
+        
+    }
 </script>
 
 <body>
@@ -94,12 +111,7 @@
 
     <div id="maincontent">
         <script>
-        
-     
-                                    // place json tree here
-                                    var treeData = [
-                                       
-                                    ]; //END_OF_TREE
+                                    var treeData = doGetEmployeeAsJson() 
 
                                     // ************** Generate the tree diagram	 *****************
                                     var margin = {

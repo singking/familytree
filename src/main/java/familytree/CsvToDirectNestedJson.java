@@ -1,4 +1,4 @@
-package com.king.familytree;
+package familytree;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +11,6 @@ import java.util.Map;
 
 import com.google.common.base.Splitter;
 import com.google.common.io.Files;
-
-import family.Person;
 
 public class CsvToDirectNestedJson {
 

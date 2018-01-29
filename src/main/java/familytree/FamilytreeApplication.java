@@ -1,4 +1,4 @@
-package com.king.familytree;
+package familytree;
 
 import java.util.Arrays;
 

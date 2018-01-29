@@ -1,0 +1,85 @@
+<html>
+  <head>
+   	<title>Demo using Ajax with jQuery</title>
+
+	<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">   	
+    <script src="scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+   	
+	<script type="text/javascript">
+
+		// Uncomment one of the following variables:
+		var baseAddress = "http://localhost:8080/DemoRestServicesJavaConfig/services";
+		//var baseAddress = "http://localhost:8080/DemoRestServicesXmlConfig/services";
+
+		function doGetEmployeeAsXml() {
+			$.ajax({
+                type: "GET",
+                url: baseAddress + "/employeePv/" + $("#employeeId").val(),
+                headers: { "Accept": "application/xml" },
+                
+                success: function (dataXmlDom) {
+                	/* 
+                	 * dataXmlDom is a DOM tree, with the following structure:
+                	 *    <mypackage.employee>
+                	 *        <id>1</id>
+                	 *        <name>Andy</name>
+                	 *        <salary>1000</salary>
+                	 *    </mypackage.employee>
+                	 *
+                	 * So we have to use the DOM API to pick out the value for each element.
+                	 * Now you know why people prefer to use JSON rather than XML!!!
+					 */                	 
+					var id     = dataXmlDom.documentElement.children[0].textContent;   
+					var name   = dataXmlDom.documentElement.children[1].textContent;   
+					var salary = dataXmlDom.documentElement.children[2].textContent;   
+
+					var strMessage = "Employee data, after parsing XML: [" + id + "] " + name + ", salary " + salary;
+					$("#messageArea").html(strMessage);
+                },
+
+                error: function (xhr, message, errorThrown) {
+                    alert("Ajax error occurred: " + message);
+                }
+            });		
+        }
+
+		function doGetEmployeeAsJson() {
+			
+			$.ajax({
+                type: "GET",
+                url: baseAddress + "/employeePv/" + $("#employeeId").val(),
+                headers: { "Accept": "application/json" },
+                
+                success: function (dataObj) {
+
+                	// Process the returned object... give the employee a pay rise :-)
+                	dataObj.salary *= 2;
+
+                	// Convert the object into a string, to display on web page.
+                    var strMessage = "JSON result, after doubling salary: " + JSON.stringify(dataObj);
+					$("#messageArea").html(strMessage);
+                },
+
+                error: function (xhr, message, errorThrown) {
+                    alert("Ajax error occurred: " + message);
+                }
+            });		
+        }
+        
+    </script>  
+  </head>
+  <body>
+  
+	  <h3>Demo calling REST services from an HTML client</h3>
+	
+	  <input type="text" id="employeeId" placeholder="Enter employee ID" />
+	  <button onclick="doGetEmployeeAsXml()">Get Employee As XML</button> 
+	  <button onclick="doGetEmployeeAsJson()">Get Employee As JSON</button> 
+	  <br /> <br />
+	
+	
+	  <h3>Results</h3>
+	  <p id="messageArea"></p>
+
+  </body>
+</html> 

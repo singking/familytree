@@ -1,8 +1,6 @@
-package com.king.familytree;
+package familytree;
 
 import java.util.Collection;
-
-import family.Person;
 
 public interface PersonService {
 
