@@ -1,375 +1,355 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="utf-8"/>
 
-      <title>yes fam - d3js</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<title>yes fam - d3js</title>
 
 
-  </head>
+</head>
 
-  <!-- load libraries --> 
-  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
-  <link rel="stylesheet" href="css/bootstrap.min.3.3.5.css"></link>
-  <link rel="stylesheet" href="css/jquery-ui.1.11.4.css"></link>
-  <link rel="stylesheet" href="css/jquery-ui.1.11.4.css"></link>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="js/underscore-min1.8.3.js"></script>
-  <script src="js/d3.v3.min.js"  charset="utf-8"></script>
-  <script src="js/jquery.min.2.1.4.js"></script>
-  <script src="js/jquery-ui.min.1.11.4.js"></script>
-  <script src="js/bootstrap.min.3.3.5.js"></script>
+<!-- load libraries -->
+<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+<link rel="stylesheet" href="css/bootstrap.min.3.3.5.css"></link>
+<link rel="stylesheet" href="css/jquery-ui.1.11.4.css"></link>
+<link rel="stylesheet" href="css/jquery-ui.1.11.4.css"></link>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="js/underscore-min1.8.3.js"></script>
+<script src="js/d3.v3.min.js" charset="utf-8"></script>
+<script src="js/jquery.min.2.1.4.js"></script>
+<script src="js/jquery-ui.min.1.11.4.js"></script>
+<script src="js/bootstrap.min.3.3.5.js"></script>
 
 <style>
 #panel {
     padding: 50px;
     display: none;
 }
+
 #paneltext {
     float: right;
     margin: 10px;
 }
-
-
 </style>
 
 
 
-<script> 
-$(document).ready(function(){
-    $("#icon").click(function(){
-        $("#panel").slideToggle("slow");
+<script>
+    $(document).ready(function() {
+        $("#icon").click(function() {
+            $("#panel").slideToggle("slow");
+        });
     });
-});
+
+
 </script>
 
-  <body>
+<body>
 
 
 
     <div id="header">
 
         <div id="icon">
-	<span class="glyphicon glyphicon-user"></span>
-	<font size="6"> yes family</font>
-	</div>
-      <div id="menuleftcontent">
-
-
-
-        <div id="myButtons" class="btn-group" data-toggle="buttons">
-          <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="off" checked id="Roberta Ancestry">Roberta</input>
-          </label>
-          <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="on" checked id="Simpson Ancestry">Simpson</input>
-          </label>
-          <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="off" checked id="Utyria Ancestry">Utyria</input>
-          </label>
-          <label class="btn btn-primary active">
-            <input type="checkbox" autocomplete="off" checked i="Pokuaa Ancestry">Pokuaa</input>
-          </label>
+            <span class="glyphicon glyphicon-user"></span> <font size="6"> yes family</font>
         </div>
-        <div class="form-group">
-          <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name" onchange="myFunction()"/>
+        <div id="menuleftcontent">
+
+
+
+            <div id="myButtons" class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active"> <input type="checkbox" autocomplete="off" checked
+                    id="Roberta Ancestry">Roberta</input>
+                </label> <label class="btn btn-primary active"> <input type="checkbox" autocomplete="on" checked
+                    id="Simpson Ancestry">Simpson</input>
+                </label> <label class="btn btn-primary active"> <input type="checkbox" autocomplete="off" checked
+                    id="Utyria Ancestry">Utyria</input>
+                </label> <label class="btn btn-primary active"> <input type="checkbox" autocomplete="off" checked
+                    i="Pokuaa Ancestry">Pokuaa</input>
+                </label>
+            </div>
+            <div class="form-group">
+                <input id="searchtext" type="text" class="form-control" placeholder="Type Smaddy Name"
+                    onchange="myFunction()" />
+            </div>
         </div>
-      </div>
-    </div>  
+    </div>
 
 
-<div id="panel">
-<!--<img class="tyrone" src="https://farm1.staticflickr.com/566/23008365366_82a1e2d1b9_n.jpg" alt="It's me: Tyrone King" > -->
+    <div id="panel">
+        <!--<img class="tyrone" src="https://farm1.staticflickr.com/566/23008365366_82a1e2d1b9_n.jpg" alt="It's me: Tyrone King" > -->
 
-<img style="float: left ; margin: 0px 5px 15px 0px;" src="https://farm1.staticflickr.com/566/23008365366_82a1e2d1b9_n.jpg" alt="Smiley face" width="100" height="100">
-<div id="paneltext">
-    <p>(Press the names to expand/collapse nodes)
-                This tree is derived from data entered in a family spreadsheet. It's a work in progress, if you can help expand it get in touch - doesn't matter about the direction or who you want to add.
-</p>
-</div>
-</div>
+        <img style="float: left; margin: 0px 5px 15px 0px;"
+            src="https://farm1.staticflickr.com/566/23008365366_82a1e2d1b9_n.jpg" alt="Smiley face" width="100"
+            height="100">
+        <div id="paneltext">
+            <p>(Press the names to expand/collapse nodes) This tree is derived from data entered in a family
+                spreadsheet. It's a work in progress, if you can help expand it get in touch - doesn't matter about the
+                direction or who you want to add.</p>
+        </div>
+    </div>
 
 
 
     <div id="maincontent">
-      <script>
-
-        // place json tree here
-        var treeData = [
-
- {
-          "id" : "0",
-          "name" : "root",
-          "motherId" : "",
-          "fatherId" : "",
-          "children" : [ {
-            "id" : "2",
-            "name" : "dad smith",
-            "motherId" : "0",
-            "fatherId" : "",
-            "children" : [ {
-              "id" : "3",
-              "name" : "son smith",
-              "motherId" : "1",
-              "fatherId" : "2",
-              "children" : [ ]
-            } ]
-          }, {
-            "id" : "1",
-            "name" : "mum smith",
-            "motherId" : "0",
-            "fatherId" : "",
-            "children" : [ {
-              "id" : "3",
-              "name" : "son smith",
-              "motherId" : "1",
-              "fatherId" : "2",
-              "children" : [ ]
-            } ]
-          } ]
-        } 
-
-
-          ]; //END_OF_TREE
-
-
-          // ************** Generate the tree diagram	 *****************
-          var margin = {top: 120, right: 120, bottom: 20, left: 100},
-          width = 2000 - margin.right - margin.left,
-          height = 2000 - margin.top - margin.bottom;
-
-          var i = 0, duration = 750, root;
-
-          var tree = d3.layout.tree().size([height, width]);
-
-          var diagonal = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
-
-          var svg = d3.select("#maincontent").append("svg")
-          .attr("width", width + margin.right + margin.left)
-          .attr("height", height + margin.top + margin.bottom).append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-          root = treeData[0];
-          root.x0 = height / 2;
-          root.y0 = 0;
-
-
-          function collapseNode(cb) {
-            var c = root.children;
-
-            
-            for (i = 0; i < c.length; i++) { 
-              var name = c[i].name;
-              if(name==cb.id){
-                if (cb.checked){
-                  expand(c[i]);
-                }else{
-                  collapse(c[i]); 
-                }
-              }
-            }
-            update(root);
-          }
-
-
-          function myFunction(d) {
-            var c = root.children;
-            var s = document.getElementById("searchtext").value
-
-            
-            for (i = 0; i < c.length; i++) { 
-              colourNode(c[i]);
-            }
-            update(root);
-          }
-
-          function colourNode(c, s) {
-
-
-            return;
-
-            for (i = 0; i < c.length; i++) {
-              var node = c[i];
-              var name = node.name;
-              if(name.indexOf(s)>-1){
-                node.style("fill", '#888')
-              }
-
-              if (node.children) {
-                node.children.forEach(colourNode(node.children, s));
-              }
-            }
-            
-          }
-
-          function collapse(d) {
-            if (d.children) {
-              d._children = d.children;
-              d._children.forEach(collapse);
-              d.children = null;
-            }
-          }
-
-          function expand(d) {
-            if (d._children) {
-              d.children = d._children;
-              d.children.forEach(expand);
-              d._children = null;
-            }
-          }
-
-        //  root.children.forEach(collapse);
-
-
-        update(root);
-
-
-        d3.select(self.frameElement).style("height", "500px");
-
-        function update(source) {
-
-            // Compute the new tree layout.
-            var nodes = tree.nodes(root).reverse(),
-            links = tree.links(nodes);
-
-            // Normalize for fixed-depth.
-            nodes.forEach(function(d) { d.y = d.depth * 180; });
-
-
-            // Update the nodes…
-            var node = svg.selectAll("g.node").data(nodes, function(d) { return d.id || (d.id = ++i); });
-
-            // Enter any new nodes at the parent's previous position.
-            var nodeEnter = node.enter().append("g").attr("class", "node").attr("transform", function(d) { 
-             return "translate(" + source.y0 + "," + source.x0 + ")"; }).on("click", expandCollapseNodesOnClick);
-
-            nodeEnter.append("circle")
-            .attr("r", 1e-6)
-            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-            nodeEnter.append("text")
-            .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
-            .text(function(d) { return d.name; })
-            .style("fill-opacity", 1e-6);
-
-            // Transition nodes to their new position.
-            var nodeUpdate = node.transition()
-            .duration(duration)
-            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
-
-            nodeUpdate.select("circle")
-            .attr("r", 5)
-            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-
-            nodeUpdate.select("text")
-            .style("fill-opacity", 1);
-
-            // Transition exiting nodes to the parent's new position.
-            var nodeExit = node.exit().transition()
-            .duration(duration)
-            .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
-            .remove();
-
-            nodeExit.select("circle").attr("r", 1e-6);
-
-            nodeExit.select("text").style("fill-opacity", 1e-6);
-
-            // Update the links…
-            var link = svg.selectAll("path.link")
-            .data(links, function(d) { return d.target.id; });
-
-            // Enter any new links at the parent's previous position.
-            link.enter().insert("path", "g")
-            .attr("class", "link")
-            .attr("d", function(d) {
-              var o = {x: source.x0, y: source.y0};
-              return diagonal({source: o, target: o});
-            });
-
-            // Transition links to their new position.
-            link.transition().duration(duration).attr("d", diagonal);
-
-            // Transition exiting nodes to the parent's new position.
-            link.exit().transition()
-            .duration(duration)
-            .attr("d", function(d) {
-              var o = {x: source.x, y: source.y};
-              return diagonal({source: o, target: o});
-            }).remove();
-
-            // Stash the old positions for transition.
-            nodes.forEach(function(d) {
-             d.x0 = d.x;
-             d.y0 = d.y;
-           });
-          }
-
-          // Toggle children expand on click.
-          function expandCollapseNodesOnClick(d) {
-            if (d.children) {
-            	d._children = d.children;
-            	d.children = null;
-            } else {
-            	d.children = d._children;
-            	d._children = null;
-            }
-            update(d);
-          }
-
-          function extractNodeNames(d) {
-            var nodename = d.name;
-
-            if(_.contains(availableTags, nodename)){
-                  //already seen
-                  return;
-                }else{
-                  availableTags.push(nodename);
-                }
-
-
-                if (d.children){
-                  for (i = 0; i < d.children.length; i++) {
-                    var node = d.children[i];
-                    var name = node.name;
-
-                    if(_.contains(availableTags, name)){
-                  // branch already seen
-                  return;
-                }else{
-                  availableTags.push(name);
-                }
-
-                if (node.children) {
-                  node.children.forEach(extractNodeNames);
-                }
-              }
-            }
-          }
-
-          var availableTags = [
-
-          ];
-
-
-          $(function() {
-
-            root.children.forEach (extractNodeNames);
-
-            $( "#searchtext" ).autocomplete({source: availableTags});
-          });
-
-
-          $("#myButtons :input").change(function() {
-              console.log(this); // points to the clicked input button
-
-              collapseNode(this)
-
-            });
-          </script>
-        </div>
-
-      </body>
-      </html>
+        <script>
+        
+     
+                                    // place json tree here
+                                    var treeData = [
+                                       
+                                    ]; //END_OF_TREE
+
+                                    // ************** Generate the tree diagram	 *****************
+                                    var margin = {
+                                        top : 120,
+                                        right : 120,
+                                        bottom : 20,
+                                        left : 100
+                                    }, width = 2000 - margin.right - margin.left, height = 2000 - margin.top
+                                            - margin.bottom;
+
+                                    var i = 0, duration = 750, root;
+
+                                    var tree = d3.layout.tree().size([ height, width ]);
+
+                                    var diagonal = d3.svg.diagonal().projection(function(d) {
+                                        return [ d.y, d.x ];
+                                    });
+
+                                    var svg = d3.select("#maincontent").append("svg").attr("width",
+                                            width + margin.right + margin.left).attr("height",
+                                            height + margin.top + margin.bottom).append("g").attr("transform",
+                                            "translate(" + margin.left + "," + margin.top + ")");
+
+                                    root = treeData[0];
+                                    root.x0 = height / 2;
+                                    root.y0 = 0;
+
+                                    function collapseNode(cb) {
+                                        var c = root.children;
+
+                                        for (i = 0; i < c.length; i++) {
+                                            var name = c[i].name;
+                                            if (name == cb.id) {
+                                                if (cb.checked) {
+                                                    expand(c[i]);
+                                                } else {
+                                                    collapse(c[i]);
+                                                }
+                                            }
+                                        }
+                                        update(root);
+                                    }
+
+                                    function myFunction(d) {
+                                        var c = root.children;
+                                        var s = document.getElementById("searchtext").value
+
+                                        for (i = 0; i < c.length; i++) {
+                                            colourNode(c[i]);
+                                        }
+                                        update(root);
+                                    }
+
+                                    function colourNode(c, s) {
+
+                                        return;
+
+                                        for (i = 0; i < c.length; i++) {
+                                            var node = c[i];
+                                            var name = node.name;
+                                            if (name.indexOf(s) > -1) {
+                                                node.style("fill", '#888')
+                                            }
+
+                                            if (node.children) {
+                                                node.children.forEach(colourNode(node.children, s));
+                                            }
+                                        }
+
+                                    }
+
+                                    function collapse(d) {
+                                        if (d.children) {
+                                            d._children = d.children;
+                                            d._children.forEach(collapse);
+                                            d.children = null;
+                                        }
+                                    }
+
+                                    function expand(d) {
+                                        if (d._children) {
+                                            d.children = d._children;
+                                            d.children.forEach(expand);
+                                            d._children = null;
+                                        }
+                                    }
+
+                                    //  root.children.forEach(collapse);
+
+                                    update(root);
+
+                                    d3.select(self.frameElement).style("height", "500px");
+
+                                    function update(source) {
+
+                                        // Compute the new tree layout.
+                                        var nodes = tree.nodes(root).reverse(), links = tree.links(nodes);
+
+                                        // Normalize for fixed-depth.
+                                        nodes.forEach(function(d) {
+                                            d.y = d.depth * 180;
+                                        });
+
+                                        // Update the nodes…
+                                        var node = svg.selectAll("g.node").data(nodes, function(d) {
+                                            return d.id || (d.id = ++i);
+                                        });
+
+                                        // Enter any new nodes at the parent's previous position.
+                                        var nodeEnter = node.enter().append("g").attr("class", "node").attr(
+                                                "transform", function(d) {
+                                                    return "translate(" + source.y0 + "," + source.x0 + ")";
+                                                }).on("click", expandCollapseNodesOnClick);
+
+                                        nodeEnter.append("circle").attr("r", 1e-6).style("fill", function(d) {
+                                            return d._children ? "lightsteelblue" : "#fff";
+                                        });
+
+                                        nodeEnter.append("text").attr("x", function(d) {
+                                            return d.children || d._children ? -13 : 13;
+                                        }).attr("dy", ".35em").attr("text-anchor", function(d) {
+                                            return d.children || d._children ? "end" : "start";
+                                        }).text(function(d) {
+                                            return d.name;
+                                        }).style("fill-opacity", 1e-6);
+
+                                        // Transition nodes to their new position.
+                                        var nodeUpdate = node.transition().duration(duration).attr("transform",
+                                                function(d) {
+                                                    return "translate(" + d.y + "," + d.x + ")";
+                                                });
+
+                                        nodeUpdate.select("circle").attr("r", 5).style("fill", function(d) {
+                                            return d._children ? "lightsteelblue" : "#fff";
+                                        });
+
+                                        nodeUpdate.select("text").style("fill-opacity", 1);
+
+                                        // Transition exiting nodes to the parent's new position.
+                                        var nodeExit = node.exit().transition().duration(duration).attr("transform",
+                                                function(d) {
+                                                    return "translate(" + source.y + "," + source.x + ")";
+                                                }).remove();
+
+                                        nodeExit.select("circle").attr("r", 1e-6);
+
+                                        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+                                        // Update the links…
+                                        var link = svg.selectAll("path.link").data(links, function(d) {
+                                            return d.target.id;
+                                        });
+
+                                        // Enter any new links at the parent's previous position.
+                                        link.enter().insert("path", "g").attr("class", "link").attr("d", function(d) {
+                                            var o = {
+                                                x : source.x0,
+                                                y : source.y0
+                                            };
+                                            return diagonal({
+                                                source : o,
+                                                target : o
+                                            });
+                                        });
+
+                                        // Transition links to their new position.
+                                        link.transition().duration(duration).attr("d", diagonal);
+
+                                        // Transition exiting nodes to the parent's new position.
+                                        link.exit().transition().duration(duration).attr("d", function(d) {
+                                            var o = {
+                                                x : source.x,
+                                                y : source.y
+                                            };
+                                            return diagonal({
+                                                source : o,
+                                                target : o
+                                            });
+                                        }).remove();
+
+                                        // Stash the old positions for transition.
+                                        nodes.forEach(function(d) {
+                                            d.x0 = d.x;
+                                            d.y0 = d.y;
+                                        });
+                                    }
+
+                                    // Toggle children expand on click.
+                                    function expandCollapseNodesOnClick(d) {
+                                        if (d.children) {
+                                            d._children = d.children;
+                                            d.children = null;
+                                        } else {
+                                            d.children = d._children;
+                                            d._children = null;
+                                        }
+                                        update(d);
+                                    }
+
+                                    function extractNodeNames(d) {
+                                        var nodename = d.name;
+
+                                        if (_.contains(availableTags, nodename)) {
+                                            //already seen
+                                            return;
+                                        } else {
+                                            availableTags.push(nodename);
+                                        }
+
+                                        if (d.children) {
+                                            for (i = 0; i < d.children.length; i++) {
+                                                var node = d.children[i];
+                                                var name = node.name;
+
+                                                if (_.contains(availableTags, name)) {
+                                                    // branch already seen
+                                                    return;
+                                                } else {
+                                                    availableTags.push(name);
+                                                }
+
+                                                if (node.children) {
+                                                    node.children.forEach(extractNodeNames);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    var availableTags = [
+
+                                    ];
+
+                                    $(function() {
+
+                                        root.children.forEach(extractNodeNames);
+
+                                        $("#searchtext").autocomplete({
+                                            source : availableTags
+                                        });
+                                    });
+
+                                    $("#myButtons :input").change(function() {
+                                        console.log(this); // points to the clicked input button
+
+                                        collapseNode(this)
+
+                                    });
+                                </script>
+    </div>
+
+</body>
+</html>
 

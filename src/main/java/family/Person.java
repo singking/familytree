@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
-	String id;
+    long id;
 	String name;
-	String motherId;
-	String fatherId;
-	
+    Long motherId;
+    Long fatherId;
+
 	List<Person> children = new ArrayList<>();
 
-	public Person(String id, String name) {
+    public Person(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
-	public Person(String id, String name, String motherId, String fatherId) {
+    public Person(long id, String name, Long motherId, Long fatherId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,11 +25,11 @@ public class Person {
 		this.fatherId = fatherId;
 	}
 
-	public String getId() {
+    public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+    public void setId(long id) {
 		this.id = id;
 	}
 
@@ -46,19 +46,19 @@ public class Person {
 		this.name = name;
 	}
 
-	public String getMotherId() {
+    public Long getMotherId() {
 		return motherId;
 	}
 
-	public void setMotherId(String motherId) {
+    public void setMotherId(Long motherId) {
 		this.motherId = motherId;
 	}
 
-	public String getFatherId() {
+    public Long getFatherId() {
 		return fatherId;
 	}
 
-	public void setFatherId(String fatherId) {
+    public void setFatherId(Long fatherId) {
 		this.fatherId = fatherId;
 	}
 
@@ -74,5 +74,6 @@ public class Person {
 	public String toString() {
 		return "Person [name=" + name + ", children=" + children + "]";
 	}
+
 
 }
