@@ -47,7 +47,6 @@ public class CsvToDirectNestedJson {
 			fatherFound = peopleMap.get(child.getFatherId());
 			if (fatherFound != null) {
 				fatherFound.getChildren().add(child);
-
 			}
 		}
 
@@ -56,17 +55,17 @@ public class CsvToDirectNestedJson {
 			motherFound = peopleMap.get(child.getMotherId());
 			if (motherFound != null) {
 				motherFound.getChildren().add(child);
-
 			}
 		}
 
 		if (child.getId() > 0) {
 			Person childFound = peopleMap.get(child.getId());
-			// throw new IllegalStateException("Child ID already exists: " + child);
+			if (childFound==null) {
+				throw new IllegalStateException("Child not found: " + child);
+			}
 		} else {
 			long id = personSequence.incrementAndGet();
 			child.setId(id);
-
 			peopleMap.put(id, child);
 
 		}
