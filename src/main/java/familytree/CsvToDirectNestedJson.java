@@ -25,13 +25,15 @@ public class CsvToDirectNestedJson {
         return roots;
     }
 
-    public Collection<Person> execute() throws IOException {
+    public Collection<Person> loadFamilyTree() throws IOException {
 
         roots = new ArrayList<>();
 
         Map<Long, Person> people = new HashMap<>();
 
-        List<String> readLines = Files.readLines(new File("familytree.csv"), Charset.defaultCharset());
+        String csvFilename = System.getProperty("familytree.csv.file");
+        
+        List<String> readLines = Files.readLines(new File(csvFilename), Charset.defaultCharset());
         for (String string : readLines) {
             List<String> columns = Splitter.on(',').trimResults().splitToList(string);
             String idString = columns.get(0);

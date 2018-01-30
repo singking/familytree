@@ -36,7 +36,7 @@ public class PersonController {
         Collection<Person> roots = new ArrayList<>();
 
         try {
-            roots = json.execute();
+            roots = json.loadFamilyTree();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
