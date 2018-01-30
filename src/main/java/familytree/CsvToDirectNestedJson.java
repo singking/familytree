@@ -9,82 +9,93 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.google.common.base.Splitter;
 import com.google.common.io.Files;
 
+@Component
 public class CsvToDirectNestedJson {
+    private static Collection<Person> roots = new ArrayList<>();
+
+    public CsvToDirectNestedJson() {
+    }
+
+    public static Collection<Person> getRoots() {
+        return roots;
+    }
 
     public Collection<Person> execute() throws IOException {
-        Map<Long, Person> people = new HashMap<>();
-        Collection<Person> roots = new ArrayList<>();
 
-		List<String> readLines = Files.readLines(new File("familytree.csv"),
-				Charset.defaultCharset());
-		for (String string : readLines) {
-			List<String> columns = Splitter.on(',').trimResults()
-					.splitToList(string);
+        roots = new ArrayList<>();
+
+        Map<Long, Person> people = new HashMap<>();
+
+        List<String> readLines = Files.readLines(new File("familytree.csv"), Charset.defaultCharset());
+        for (String string : readLines) {
+            List<String> columns = Splitter.on(',').trimResults().splitToList(string);
             String idString = columns.get(0);
             if (idString.equals("ID")) {
-				// ignore header
-				continue;
-			}
+                // ignore header
+                continue;
+            }
 
             String motherStringId = columns.get(1);
             String fatherStringId = columns.get(2);
-			String firstname = columns.get(3);
-			String middlename = columns.get(4);
-			String secondname = columns.get(5);
+            String firstname = columns.get(3);
+            String middlename = columns.get(4);
+            String secondname = columns.get(5);
 
-			if ((firstname == null || firstname.equals(""))
-					&& (secondname == null || secondname.equals(""))) {
-				continue;
-			}
-			String name = firstname;
-			if (middlename != null) {
-				middlename = middlename.trim();
-				if (!middlename.equals("")) {
-					name = name + " " + middlename;
-				}
-			}
-			if (secondname != null) {
-				secondname = secondname.trim();
-				if (!secondname.equals("")) {
-					name = name + " " + secondname;
-				}
-			}
+            if ((firstname == null || firstname.equals("")) && (secondname == null || secondname.equals(""))) {
+                continue;
+            }
+
+            String name = firstname;
+            if (middlename != null) {
+                middlename = middlename.trim();
+                if (!middlename.equals("")) {
+                    name = name + " " + middlename;
+                }
+            }
+            if (secondname != null) {
+                secondname = secondname.trim();
+                if (!secondname.equals("")) {
+                    name = name + " " + secondname;
+                }
+            }
 
             long id = Long.parseLong(idString);
             Long motherId = "".equals(motherStringId) ? null : Long.parseLong(motherStringId);
             Long fatherId = "".equals(fatherStringId) ? null : Long.parseLong(fatherStringId);
 
             Person person = new Person(id, name, motherId, fatherId);
-			people.put(id, person);
+            people.put(id, person);
 
-		}
-		for (Person p : people.values()) {
-			Person mother = people.get(p.getMotherId());
-			Person father = people.get(p.getFatherId());
+        }
+        for (Person p : people.values()) {
+            Person mother = people.get(p.getMotherId());
+            Person father = people.get(p.getFatherId());
 
-			if (mother != null) {
-				mother.getChildren().add(p);
-			}
-			if (father != null) {
-				father.getChildren().add(p);
-			}
-			if (father == null && mother == null) {
-				roots.add(p);
-			}
-		}
+            if (mother != null) {
+                mother.getChildren().add(p);
+            }
+            if (father != null) {
+                father.getChildren().add(p);
+            }
+            if (father == null && mother == null) {
+                roots.add(p);
+            }
+        }
 
-		if (roots.size() != 1) {
+        if (roots.size() != 1) {
 
-			String rootString = "";
-			for (Person p : roots) {
-				rootString += p.getName() + " ";
-			}
+            String rootString = "";
+            for (Person p : roots) {
+                rootString += p.getName() + " ";
+            }
 
-			throw new RuntimeException("expecting one root=>" + rootString);
-		}
+            throw new RuntimeException("expecting one root=>" + rootString);
+        }
         // ObjectMapper mapper = new ObjectMapper();
         // // mapper.enable(SerializationConfig.INDENT_OUTPUT);
         //
@@ -99,5 +110,5 @@ public class CsvToDirectNestedJson {
         // return jsonInString;
 
         return roots;
-	}
+    }
 }

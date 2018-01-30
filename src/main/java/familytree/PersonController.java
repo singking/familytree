@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * http://localhost:8888/hello?name=ty
+ * http://localhost:8080/persons
  *
  */
 @RestController
@@ -30,7 +30,6 @@ public class PersonController {
         return "Hello " + name;
     }
 
-    // Get all items.
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody Collection<Person> csvToDirectNestedJson() {
         CsvToDirectNestedJson json = new CsvToDirectNestedJson();
